@@ -1,0 +1,117 @@
+https://reisapi.ruter.no/Heartbeat/Index
+
+Heartbeat
+Controller for the heart beat feature that can be used to check if the API is up and running.
+
+API	Description
+GET Heartbeat/Index	
+Returns Heartbeat information regarding versions and responseTimes.
+
+Place
+API	Description
+GET Place/GetStop/{id}	
+Returns all data about a Stop
+
+GET Place/GetArea/{id}	
+This method is not official part of Ruter Open API. It may be removed or changed without prior notice.
+
+GET Place/GetPlaceExtension/{id}?locationType={locationType}	
+This method is not official part of Ruter Open API. It may be removed or changed without prior notice
+
+GET Place/GetPlacesByIdListExtension	
+This method is not official part of Ruter Open API. It may be removed or changed without prior notice
+
+GET Place/GetPlacesByAreaExtension?xmin={xmin}&xmax={xmax}&ymin={ymin}&ymax={ymax}&unique={unique}&locationType={locationType}	
+This method is not official part of Ruter Open API. It may be removed or changed without prior notice
+
+GET Place/GetClosestPlacesExtension?coordinates={coordinates}&proposals={proposals}&maxdistance={maxdistance}&unique={unique}&locationType={locationType}	
+This method is not official part of Ruter Open API. It may be removed or changed without prior notice
+
+GET Place/GetPlaces/{id}?location={location}	
+Returns a list of Places that have names similar to the search string. If a Location is provided, search results are sorted according to geographical proximity.
+
+GET Place/GetPlacesExtension/{id}?location={location}&unique={unique}&locationType={locationType}&proposals={proposals}	
+This method is not official part of Ruter Open API. It may be removed or changed without prior notice
+
+GET Place/GetStopsByLineID/{id}	
+Returns an unsorted list of all Stops served by a Line.
+
+GET Place/GetClosestStops?coordinates={coordinates}&proposals={proposals}&maxdistance={maxdistance}&productOwner={productOwner}	
+Returns a List of Stops and their real walking distance to the point defined by the argument Coordinates.
+
+GET Place/GetStopsByArea?xmin={xmin}&xmax={xmax}&ymin={ymin}&ymax={ymax}&includeStopPoints={includeStopPoints}	
+Returns a list of Stops within a box defined by the search arguments. All values have to be on UTM33 format.
+
+GET Place/GetSalePointsByArea?longmin={longmin}&longmax={longmax}&latmin={latmin}&latmax={latmax}	
+Returns a list of SalePoints within a box defined by the search arguments. All values have to be long lat.
+
+GET Place/GetCityBikeStations?longmin={longmin}&longmax={longmax}&latmin={latmin}&latmax={latmax}	
+Returns a list of City Bike Sations within a box defined by the search arguments. The stations also contain information about available bicycles and locks.
+
+GET Place/GetCityBikeInformation?longmin={longmin}&longmax={longmax}&latmin={latmin}&latmax={latmax}	
+Returns a City Bike Information object which contains bike racks within a box defined by the search arguments. The result alsp contains a boolean value specifying if alle bike racks are closed or open.
+
+GET Place/GetStopsRuter	
+Returns a list of stops within the Ruter zones.
+
+GET Place/GetStops/{id}	
+Gets the stops for a given productowner
+
+Trip
+API	Description
+GET Trip/GetTrip/{id}?time={time}	
+Returns a sequence of all Stops served by a Trip.
+
+Meta
+API	Description
+GET Meta/GetValidities	
+Returns the date and time for the first and last valid search time.
+
+Travel
+API	Description
+GET Travel/GetTravels?fromPlace={fromPlace}&toPlace={toPlace}&isafter={isafter}&time={time}&changemargin={changemargin}&changepunish={changepunish}&walkingfactor={walkingfactor}&proposals={proposals}&transporttypes={transporttypes}&maxwalkingminutes={maxwalkingminutes}&linenames={linenames}&waitReluctance={waitReluctance}&walkreluctance={walkreluctance}&waitAtBeginningFactor={waitAtBeginningFactor}&showIntermediateStops={showIntermediateStops}&ignoreRealtimeUpdates={ignoreRealtimeUpdates}&intermediateStops={intermediateStops}	
+The travel planner covers all public transport modes and walking. In order to plan a journey between two places, you need to input the location of both the starting point and the destination on one of the following formats: National stop ID, Area ID, POI ID or Coordinate (in UTM32 format) In most cases, default parameters for interchange and walking speed should be used, but they can be adjusted according to your wish. The server will return a TravelResponse object, which in turn contains an array of TravelProposals as well as a ReisError object (which should be empty ;)). The TravelProposal objects in turn contain a TravelStage or WalkingStage object for each of the legs of the journey.
+
+GET Travel/GetTravelsExtension?fromplace={fromplace}&toplace={toplace}&isafter={isafter}&time={time}&changemargin={changemargin}&changepunish={changepunish}&walkingfactor={walkingfactor}&proposals={proposals}&transporttypes={transporttypes}&maxwalkingminutes={maxwalkingminutes}&linenames={linenames}&showIntermediatePlaces={showIntermediatePlaces}&ignoreRealtimeUpdates={ignoreRealtimeUpdates}	
+No documentation available.
+
+GET Travel/GetRoute?stops={stops}&time={time}&outSR={outSR}	
+No documentation available.
+
+StopVisit
+API	Description
+GET StopVisit/GetDepartures/{id}?datetime={datetime}&transporttypes={transporttypes}&linenames={linenames}	
+Returns a List of StopVisits (departures) from a Stop. If no time parameter is supplied, departures in realtime will be returned.
+
+Street
+API	Description
+GET Street/GetStreet/{id}	
+Returns all Houses with their coordinates of a Street with the given ID
+
+Line
+API	Description
+GET Line/GetLines	
+Returns a List of all Lines available.
+
+GET Line/GetLinesByStopID/{id}	
+Returns a List of all Lines that serve a Stop.
+
+GET Line/GetDataByLineID/{id}	
+Returns data about a Line.
+
+GET Line/GetStopsByLineId/{id}	
+Returns a List of all Stops that are served by a Line.
+
+GET Line/GetLinesRuterExtended?ruterOperatedOnly={ruterOperatedOnly}	
+Returns a list of lines that Ruter operates, including stops for each line. Whether or not to include train lines, airport express lines and other lines by other operators. Set to "true" or "false", default is false if not supplied.
+
+GET Line/GetLinesRuter?ruterOperatedOnly={ruterOperatedOnly}	
+Returns a list of lines that Ruter operates.
+
+Favourites
+API	Description
+GET Favourites/GetFavourites?favouritesRequest={favouritesRequest}	
+An application can store information about the user’s favourite departures from a Stop, filtered by Line and Destination. The FavouriteRequest is concatenated as such: Stopid1-lineid1-destinationtext1,stopid2-lineid2-destinationtext2 etc. Example: MonitoredStopVisits are returned, grouped by the three parametres.
+
+GET Favourites/GetWidgetFavourites?widgetRequest={widgetRequest}&longitude={longitude}&latitude={latitude}	
+An application can store information about the user’s favourite departures from a Stop, filtered by Line and Destination. The WidgetRequest is concatenated as such: longitude=10.32231amp;latitude=52.2123amp;Stopid1-lineid1-destinationtext1,stopid2-lineid2-destinationtext2 Example: /Favourites/GetWidgetFavourites?widgetRequest=3010011-5-vestli,3011720-4-Bergkrys,3011720-5-Ringen&longitude=10.4554&latitude=53.458 WidgetDepartureFavourite are returned, sorted by the closes stop
